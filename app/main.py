@@ -23,20 +23,16 @@ class CarWashStation:
         self.average_rating = average_rating
         self.count_of_ratings = count_of_ratings
 
-    # розрахунок ціни для однієї машини, бо це буде використовуватись далі
     def calculate_washing_price(self, car: Car) -> float:
         return round(
             car.comfort_class * (self.clean_power - car.clean_mark)
             * (self.average_rating / self.distance_from_city_center), 1
         )
 
-# метод, що змінює clean_mark помитої машини
     def wash_single_car(self, car: Car) -> None:
         if self.clean_power > car.clean_mark:
             car.clean_mark = self.clean_power
 
-# метод, де треба використати попередні два методи
-    # для обробки списку машин і підрахунку доходу
     def serve_cars(self, cars: List[Car]) -> float:
         income = 0
         for car in cars:
